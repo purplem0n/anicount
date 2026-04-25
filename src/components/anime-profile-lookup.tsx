@@ -35,6 +35,14 @@ const pathMal = "/myanimelist/:username"
 const pathAnilist = "/anilist/:username"
 const GITHUB_REPO = "https://github.com/purplem0n/anicount"
 
+/** When the ONE PIECE cours figure below was last verified—bump with the count. */
+const ONE_PIECE_COURS_AS_OF = new Date(2026, 3, 25)
+const onePieceCoursAsOfLabel = new Intl.DateTimeFormat(undefined, {
+  month: "long",
+  day: "numeric",
+  year: "numeric",
+}).format(ONE_PIECE_COURS_AS_OF)
+
 function readUsernameCache(key: string): string {
   try {
     return localStorage.getItem(key) ?? ""
@@ -439,7 +447,10 @@ function EquivalenceBlurb({ count }: { count: number }) {
             <span className="text-foreground font-semibold tabular-nums">
               {formatted}
             </span>{" "}
-            times straight—pick your jaw off the floor.
+            times straight—pick your jaw off the floor. For reference,{" "}
+            <span className="text-foreground font-semibold">ONE PIECE</span>{" "}
+            has 96 cours worth of content as of {onePieceCoursAsOfLabel}{" "}
+            (not counting spinoffs and movies).
           </p>
           <p className="text-foreground/95 border-t border-border/70 pt-3 text-sm leading-snug">
             {degenKickerLine(count)}
